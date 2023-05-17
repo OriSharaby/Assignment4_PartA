@@ -12,12 +12,18 @@ namespace ariel{
             int health;
 
         public:
-            Character(string,Point);
+            Character(string ,Point,int);
+            Character(Character &) noexcept;
+            Character &operator=(const Character &) noexcept;
+            Character(Character &&) noexcept;
+            Character &operator=(Character &&) noexcept;
+            virtual ~Character();
             bool isAlive();
+            Point getPoint()const;
             double calcDistance(Character*);
             void hit(int);
-            string getName();
-            int getHealth();
+            string getName()const;
+            int getHealth()const;
             void setHealth(int);
             Point getLocation();
             virtual string print(); 
@@ -31,7 +37,7 @@ namespace ariel{
             void shoot(Character*);
             bool hasboolets();
             void reload();
-            string print();
+            string print()override;
 
     };
     
@@ -45,7 +51,7 @@ namespace ariel{
             void slash(Character *other);
             void setSpeed(int);
             int getSpeed();
-            string print();
+            string print()override;
     };
 
     class YoungNinja : public Ninja{

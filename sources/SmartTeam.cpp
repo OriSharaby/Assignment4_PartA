@@ -5,12 +5,28 @@
 using namespace std;
 using namespace ariel;
 
-    SmartTeam::~SmartTeam(){
-        
-    }
-    SmartTeam::SmartTeam(Character *leader) : leader(leader) {
+    SmartTeam::SmartTeam(Character *leader) : leader(leader) ,capacity(10){
 
     }
+    
+    SmartTeam::SmartTeam(SmartTeam &&other)noexcept {
+        leader = other.leader;
+        team = other.team;
+    }
+
+    SmartTeam &SmartTeam::operator=(const SmartTeam &other) {
+        leader = other.leader;
+        team = other.team;
+        return *this;
+    }
+
+    SmartTeam &SmartTeam::operator=( SmartTeam &&other) noexcept{
+        leader = other.leader;
+        team = other.team;
+        return *this;
+    }
+
+    SmartTeam::~SmartTeam(){}
 
     void SmartTeam::add(Character*){
 

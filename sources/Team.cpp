@@ -4,11 +4,29 @@
 using namespace std;
 using namespace ariel;
 
-    Team::~Team(){
-        
+
+    Team::Team(Character *leader) : leader(leader) ,capacity(10){
+        team.push_back(leader);
     }
-    Team::Team(Character *leader) : leader(leader) {
+    
+    Team::Team(Team &&other)noexcept {
+        leader = other.leader;
+        team = other.team;
     }
+
+
+    Team &Team::operator=(const Team &other) {
+        leader = other.leader;
+        team = other.team;
+        return *this;
+    }
+
+    Team &Team::operator=( Team &&other) noexcept{
+        leader = other.leader;
+        team = other.team;
+        return *this;
+    }
+    Team::~Team() {}
 
     void Team::add(Character*){
 

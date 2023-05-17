@@ -2,19 +2,23 @@
 #include "Character.hpp"
 #include <iostream>
 #include <string>
+#include <vector>
 
 namespace ariel{ 
     class Team{
         private:
-            Character* (*members);
+            vector<Character *> team;
             Character* leader;
             int Size;
-            int capacity = 10;
+            int capacity;
 
         public:
-            ~Team();
             Team(const Team& other);
             Team(Character *leader);
+            Team(Team&& other)noexcept;
+            Team& operator=(const Team& other);
+            Team& operator=( Team&& other)noexcept;
+            ~Team();
             void add(Character*);
             void attack(Team*); 
             int stillAlive();
